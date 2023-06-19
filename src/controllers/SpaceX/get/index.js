@@ -1,7 +1,8 @@
 'use-strict'
 
 const { default: axios } = require('axios');
-const { UrlConstants } = require('../../../constants');
+const { UrlConstants, Messages, Statuses } = require('../../../constants');
+const { baseResponse } = require('../../../response');
 
 const axiosConfig = {
     headers: {
@@ -21,8 +22,30 @@ exports.getSpaceXLaunches = async function (req, res) {
 
     try{
         const getItem = await axios.get(URL, axiosConfig);
-    } catch(e){
 
+        const data = getItem.data;
+
+        if(data.links.flickr.original.length === 0){
+            const response = {
+                url: ''
+            }
+            baseResponse(res, Statuses.NO_IMAGES, true, Messages.NO_IMAGES, response);
+        }
+
+        const max = data.links.flickr.original.length;
+        const randomNumber = Math.floor((Math.random() * max));
+        const url = data.links.flickr.original[randomNumber];
+
+        const response = {
+            url
+        }
+
+        baseResponse(res, Statuses.SUCCESS_GET, true, Messages.SUCCESS_GET, response);
+    } catch(e){
+        const response = {
+            url: ''
+        }
+        baseResponse(res, Statuses.ERROR_GET, true, Messages.ERROR_GET, response);
     }
 
 }
