@@ -4,12 +4,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-const LocalServer = require('./src/constants');
+const initRoutes = require('./src/routes');
+const { UrlConstants } = require('./src/constants/constants');
 
 const corsOptions = {
   origin: [
-    `${LocalServer.SERVER_URL}`,
-    `${LocalServer.FRONTEND_URL}`
+    `${UrlConstants.SERVER_URL}`,
+    `${UrlConstants.FRONTEND_URL}`
   ],
 };
 
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 initRoutes(app);
 
 //Server
-const PORT = process.env.PORT || LocalServer.PORT;
+const PORT = process.env.PORT || UrlConstants.PORT;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
 });
