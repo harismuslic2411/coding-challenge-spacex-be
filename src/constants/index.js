@@ -18,7 +18,7 @@ const Messages = {
     SUCCESS_GET: 'Data succesfully retrieved',
     SUCCESS_POST: 'Data succesfully posted',
     NO_IMAGES: 'Resource not found',
-    ERROR_GET: 'Something went wront, please try again'
+    ERROR_GET: 'Something went wrong, please try again'
 }
 
 module.exports = {
