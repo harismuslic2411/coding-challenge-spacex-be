@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 const initRoutes = require('./src/routes');
-const { UrlConstants } = require('./src/constants/constants');
+const { UrlConstants } = require('./src/constants');
 
 const corsOptions = {
   origin: [
