@@ -45,7 +45,7 @@ exports.getSpaceXLaunches = async function (req, res) {
         const response = {
             url: ''
         }
-        baseResponse(res, Statuses.ERROR_GET, true, Messages.ERROR_GET, response);
+        baseResponse(res, Statuses.ERROR_GET, false, Messages.ERROR_GET, response);
     }
 
 }
